@@ -229,7 +229,7 @@ a {
 }
 
 .main .table {
-    margin: 80px auto 0;
+    margin: 0 auto;
     width: 1350px;
 }
 .main .table-wrapper {
@@ -247,10 +247,10 @@ a {
     content: '';
     background: no-repeat url(../img/arrow-down.svg) center / contain;
     position: absolute;
-    top: 2px;
-    right: 0;
-    width: 12px;
-    height: 12px;
+    top: 5px;
+    right: -6px;
+    width: 8px;
+    height: 8px;
 }
 .main .table .title.desc a:after {
     transform: rotate(180deg);
@@ -260,7 +260,7 @@ a {
 }
 .main .table td {
     padding: 20px 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 .main .table .btns {
     display: flex;
@@ -288,7 +288,8 @@ a {
     flex-direction: column;
     align-items: center;
 }
-.main .form.active {
+.main .form.active,
+.main .form.form_doctor {
     display: flex;
 }
 .main .form a {
@@ -328,6 +329,9 @@ a {
     font-weight: 500;
     color: #9fa1a5;
 }
+.main .form__field.empty {
+    border-color: #ff405c;
+}
 .main .form__select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -345,6 +349,23 @@ a {
     border-bottom-left-radius: 0px;
     color: #fff;
     cursor: pointer;
+}
+.main .form.form_sort {
+    margin: 45px 0 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.main .form.form_sort .form__field {
+    padding: 10px 24px;
+    min-width: 150px;
+    appearance: none;
+    margin: 0 20px;
+}
+.main .form.form_sort .form__btn {
+    padding: 10px 20px;
+    font-size: 18px;
 }
 
 @media (max-width: 800px) {

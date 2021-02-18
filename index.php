@@ -1,3 +1,10 @@
+<?php
+    require_once 'admin/includes/db.php';
+    require_once 'admin/includes/functions.php';
+
+    $doctors_query = mysqli_query($db, "SELECT * FROM doctors"); 
+    $doctors_result = get_assoc_rows($doctors_query);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -138,52 +145,117 @@
             </div>
         </header>
         <main class="main">
-            <div class="title-line"><span>Запис</span> до лікаря</div>
+            <div class="title-line"><span>Медичний</span> центр</div>
             <div class="container">
                 <div class="main__inner">
-                    <form action="admin/includes/add_patient.php" method="POST" class="form" id="form">
-                        <p id="error">Перевірте правильність заповнення полів</p>
-                        <?php
-                            if($_GET['succes'] === 'true') {
-                                $message = 'Заявку успішно відправлено!';
-                                $class = 'succes';
-                            } else if($_GET['succes'] === 'false') {
-                                $message = 'Щось пішло не так, повторіть спробу пізніше!';
-                                $class = 'errorMessage';
-                            }
-
-                            echo "<p class='$class'>$message</p>";
-                        ?>
-                        <input type="text" name="surname" placeholder="Прізвище" class="form__field" id="surname" />
-                        <input type="text" name="name" placeholder="Ім'я" class="form__field" id="name" />
-                        <input
-                            type="text"
-                            name="third-name"
-                            placeholder="По-батькові"
-                            class="form__field"
-                            id="thirdName"
-                        />
-                        <select name="gender" class="form__field form__select" id="gender">
-                            <option value="Ваша стать" selected disabled>Ваша стать</option>
-                            <option value="Чоловік">Чоловік</option>
-                            <option value="Жінка">Жінка</option>
-                        </select>
-                        <input
-                            type="text"
-                            name="born"
-                            placeholder="Дата народження (дд.мм.рррр)"
-                            class="form__field"
-                            id="dateField"
-                        />
-                        <input
-                            type="text"
-                            name="phone"
-                            placeholder="Номер телефону"
-                            class="form__field"
-                            id="phoneField"
-                        />
-                        <button class="form__btn">Записатися до лікаря</button>
-                    </form>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="img/slider/1.jpg" alt="slide-1" />
+                                <div class="overlap"></div>
+                                <p class="title">Кардіологія</p>
+                                <p class="description">лікуємо захворювання серцево-судинної системи</p>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="img/slider/2.jpg" alt="slide-2" />
+                                <div class="overlap"></div>
+                                <p class="title">Травмотологія</p>
+                                <p class="description">лікуємо пацієнтів з гострою травмою</p>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="img/slider/3.jpg" alt="slide-3" />
+                                <div class="overlap"></div>
+                                <p class="title">Педіатрія</p>
+                                <p class="description">діагностуємо дітей віком від 0 до 18 років</p>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="img/slider/4.jpg" alt="slide-4" />
+                                <div class="overlap"></div>
+                                <p class="title">Офтамологія</p>
+                                <p class="description">лікуємо очні захворювання</p>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="img/slider/5.jpg" alt="slide-5" />
+                                <div class="overlap"></div>
+                                <p class="title">Алергологія</p>
+                                <p class="description">займаємося виявленням алергічних захворювань і їх лікуванням</p>
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                    <div class="about">
+                        <div class="left-side">
+                            <p class="title">Елвейс - ваше здоров'я в руках професіоналів</p>
+                            <p class="description">
+                                <span>
+                                    Медичний центр «Елвейс» - медичний центр в місті Суми, якому щодня довіряють своє
+                                    здоров'я тисячі сумчан.
+                                </span>
+                                <br /><br />
+                                <span>
+                                    Надаючи послуги з 2002 року, ми встигли стати одною з кращих медичний установ.
+                                </span>
+                                <br /><br />
+                                <span>
+                                    Відповідальний підхід, професіоналізм і увага до кожного клієнта ви зможете оцінити
+                                    з перших хвилин перебування в клініці!
+                                </span>
+                            </p>
+                        </div>
+                        <div class="right-side">
+                            <img src="img/medical-center.jpg" alt="sign-up" />
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+                        <p class="form-title">Записатися до лікаря</p>
+                        <form action="admin/includes/add_patient.php" method="POST" class="form" id="form">
+                            <p id="error">Перевірте правильність заповнення полів</p>
+                            <?php
+                                if($_GET['succes'] === 'true') {
+                                    $message = 'Заявку успішно відправлено!';
+                                    $class = 'succes';
+                                } else if($_GET['succes'] === 'false') {
+                                    $message = 'Щось пішло не так, повторіть спробу пізніше!';
+                                    $class = 'errorMessage';
+                                }
+    
+                                echo "<p class='$class'>$message</p>";
+                            ?>
+                            <input type="text" name="surname" placeholder="Прізвище" class="form__field" id="surname" />
+                            <input type="text" name="name" placeholder="Ім'я" class="form__field" id="name" />
+                            <input type="text" name="third-name" placeholder="По-батькові" class="form__field" id="thirdName" />
+                            <select name="gender" class="form__field form__select" id="gender">
+                                <option value="Ваша стать" selected disabled>Ваша стать</option>
+                                <option value="Чоловік">Чоловік</option>
+                                <option value="Жінка">Жінка</option>
+                            </select>
+                            <input
+                                type="text"
+                                name="born"
+                                placeholder="Дата народження (дд.мм.рррр)"
+                                class="form__field"
+                                id="dateField"
+                            />
+                            <input
+                                type="text"
+                                name="phone"
+                                placeholder="Номер телефону"
+                                class="form__field"
+                                id="phoneField"
+                            />
+                            <select name="doctor" class="form__field form__select" id="doctor">
+                                <option value="Оберіть лікаря" selected disabled>Оберіть лікаря</option>
+                                <?php
+                                    for($i = 0; $i < count($doctors_result); $i++) {
+                                        $curr_doctor = $doctors_result[$i];
+                                        echo '<option value="'.$curr_doctor['id'].'">'.$curr_doctor['third_name'].' '.$curr_doctor['name'].' '.$curr_doctor['surname'].' - '.$curr_doctor['specialization'].'</option>';
+                                    }
+                                ?>
+                            </select>
+                            <button class="form__btn">Записатися до лікаря</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>

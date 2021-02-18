@@ -7,8 +7,11 @@ $third_name = $_POST['third-name'];
 $gender = $_POST['gender'];
 $born = date("Y-m-d", strtotime($_POST['born']));
 $phone = $_POST['phone'];
+$doctor = $_POST['doctor'];
 
-$res = mysqli_query($db, "INSERT INTO patients (`name`, `surname`, `third_name`, `gender`, `born`, `phone`) VALUES('$name', '$surname', '$third_name', '$gender', '$born', '$phone')");
+$res = mysqli_query($db, "INSERT INTO patients (`name`, `surname`, `third_name`, `gender`, `born`, `phone`, `doctor_id`) VALUES('$name', '$surname', '$third_name', '$gender', '$born', '$phone', '$doctor')");
 
-$succes = $res == 1 ? 'true' : 'false';
-header("Location: /?succes=$succes");
+if($res)
+header("Location: /admin/thanks.php");
+else
+header("Location: /admin/fail.php");

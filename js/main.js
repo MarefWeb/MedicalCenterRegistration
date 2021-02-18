@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const surname = form.querySelector('#surname');
     const thirdName = form.querySelector('#thirdName');
     const gender = form.querySelector('#gender');
+    const doctor = form.querySelector('#doctor');
     const dateField = document.querySelector('#dateField');
     const phoneField = document.querySelector('#phoneField');
     const phoneMask = IMask(phoneField, {
@@ -25,7 +26,8 @@ window.addEventListener('DOMContentLoaded', () => {
             isEmpty(thirdName) ||
             isGenderEmpty(gender) ||
             isDateEmpty(dateField) ||
-            isPhoneEmpty(phoneField)
+            isPhoneEmpty(phoneField) ||
+            isDoctorEmpty(doctor)
         ) {
             e.preventDefault();
             errorMessage.classList.add('active');
@@ -52,6 +54,16 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function isDoctorEmpty(field) {
+        if (field.value === 'Оберіть лікаря') {
+            field.classList.add('empty');
+            return true;
+        } else {
+            field.classList.remove('empty');
+            return false;
+        }
+    }
+
     function isDateEmpty(field) {
         const dateParts = field.value.split('.');
         let isCorrect = true;
@@ -70,7 +82,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function isPhoneEmpty(field) {
-        console.log(field.value.length);
         if (field.value.length < 17) {
             field.classList.add('empty');
             return true;
@@ -79,4 +90,12 @@ window.addEventListener('DOMContentLoaded', () => {
             return false;
         }
     }
+
+    const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 });

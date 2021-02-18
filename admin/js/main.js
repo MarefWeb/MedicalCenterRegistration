@@ -33,6 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const surnameField = document.querySelector('#surname');
     const thirdNameField = document.querySelector('#thirdName');
     const genderField = document.querySelector('#gender');
+    const doctorField = document.querySelector('#doctor');
 
     document.addEventListener('click', (e) => {
         const target = e.target;
@@ -47,8 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const bornDate = new Date(tr.querySelector('.born').innerText);
             const bornData = `${addZero(bornDate.getDate())}.${addZero(bornDate.getMonth())}.${bornDate.getFullYear()}`;
             const phoneData = tr.querySelector('.phone').innerText;
-
-            console.log(bornData);
+            const doctorData = tr.querySelector('.doctor').dataset.id;
 
             idField.value = idData;
             nameField.value = nameData;
@@ -57,6 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
             genderField.value = genderData;
             dateField.value = bornData;
             phoneField.value = phoneData;
+            doctorField.value = doctorData;
 
             form.classList.add('active');
             scrollTo(target.dataset.target);
@@ -70,10 +71,41 @@ window.addEventListener('DOMContentLoaded', () => {
             isEmpty(thirdName) ||
             isGenderEmpty(gender) ||
             isDateEmpty(dateField) ||
-            isPhoneEmpty(phoneField)
+            isPhoneEmpty(phoneField) ||
+            isDoctorEmpty(doctorField)
         ) {
             e.preventDefault();
             errorMessage.classList.add('active');
+        }
+    });
+
+    const doctorForm = document.querySelector('#doctor-form');
+    const doctorSurname = document.querySelector('#doctor-surname');
+    const doctorName = document.querySelector('#doctor-name');
+    const doctorThirdName = document.querySelector('#doctor-thirdName');
+    const doctorGender = document.querySelector('#doctor-gender');
+    const doctorSpecialization = document.querySelector('#doctor-specialization');
+
+    doctorForm.addEventListener('submit', (e) => {
+        if (
+            isEmpty(doctorSurname) ||
+            isEmpty(doctorName) ||
+            isEmpty(doctorThirdName) ||
+            isGenderEmpty(doctorGender) ||
+            isEmpty(doctorSpecialization)
+        ) {
+            e.preventDefault();
+            errorMessage.classList.add('active');
+        }
+    });
+
+    const sortForm = document.querySelector('#sort-form');
+    const sortDoctor = document.querySelector('#sort-doctor');
+
+    sortForm.addEventListener('submit', (e) => {
+        if (sortDoctor.value === 'Оберіть лікаря') {
+            e.preventDefault();
+            sortDoctor.classList.add('empty');
         }
     });
 
@@ -84,6 +116,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function isEmpty(field) {
         if (field.value === '') {
+            field.classList.add('empty');
+            return true;
+        } else {
+            field.classList.remove('empty');
+            return false;
+        }
+    }
+
+    function isDoctorEmpty(field) {
+        if (field.value === 'Оберіть лікаря') {
             field.classList.add('empty');
             return true;
         } else {
@@ -120,7 +162,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function isPhoneEmpty(field) {
-        console.log(field.value.length);
         if (field.value.length < 17) {
             field.classList.add('empty');
             return true;
