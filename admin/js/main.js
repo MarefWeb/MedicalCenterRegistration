@@ -44,8 +44,11 @@ window.addEventListener('DOMContentLoaded', () => {
             const surnameData = tr.querySelector('.surname').innerText;
             const thirdNameData = tr.querySelector('.thirdName').innerText;
             const genderData = tr.querySelector('.gender').innerText;
-            const bornData = tr.querySelector('.born').innerText;
+            const bornDate = new Date(tr.querySelector('.born').innerText);
+            const bornData = `${addZero(bornDate.getDate())}.${addZero(bornDate.getMonth())}.${bornDate.getFullYear()}`;
             const phoneData = tr.querySelector('.phone').innerText;
+
+            console.log(bornData);
 
             idField.value = idData;
             nameField.value = nameData;
@@ -73,6 +76,11 @@ window.addEventListener('DOMContentLoaded', () => {
             errorMessage.classList.add('active');
         }
     });
+
+    function addZero(el) {
+        let str = el.toString();
+        return str.length < 2 ? `0${str}` : str;
+    }
 
     function isEmpty(field) {
         if (field.value === '') {

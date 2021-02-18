@@ -109,6 +109,7 @@
             </div>
             <form action="includes/edit_patient_data.php" method="POST" class="form" id="form">
                 <p class="title">Редагування</p>
+                <p id="error">Перевірте правильність заповнення полів</p>
                 <input type="hidden" name="id" id="id">
                 <input type="text" name="surname" placeholder="Прізвище" class="form__field" id="surname" />
                 <input type="text" name="name" placeholder="Ім'я" class="form__field" id="name" />
