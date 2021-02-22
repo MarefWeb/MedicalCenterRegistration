@@ -1,0 +1,32 @@
+.result {
+    font-family: 'Montserat', sans-serif;
+    text-align: center;
+    color: #2b2b2b;
+}
+
+.result .title {
+    margin: 100px 0 0;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.result .subtitle {
+    margin: 10px 0 30px;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.result .back-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #00bbf9;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 19px;
+    border-bottom-left-radius: 0px;
+    color: #fff;
+    cursor: pointer;
+}
